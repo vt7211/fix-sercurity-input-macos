@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.kiem-tra-go-tieng-viet/watchdog-state.schema.json",
+  "title": "secure-input-watchdog state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pid",
+    "comm",
+    "first_seen",
+    "last_notify",
+    "last_lock",
+    "last_clear",
+    "lock_failures",
+    "updated"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Bump when fields change incompatibly"
+    },
+    "pid": {
+      "type": "string",
+      "pattern": "^[0-9]*$",
+      "description": "Secure Input holder PID as string; \"0\" or \"\" when clear"
+    },
+    "comm": {
+      "type": "string",
+      "description": "Process command name or empty when SI off"
+    },
+    "first_seen": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix time when current PID first observed stuck"
+    },
+    "last_notify": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_lock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix time of last SACLockScreenImmediate from watchdog"
+    },
+    "last_clear": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix time when SI last transitioned to off (post-unlock grace)"
+    },
+    "lock_failures": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Locks while same stuck episode; >=3 → Log Out hint"
+    },
+    "updated": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

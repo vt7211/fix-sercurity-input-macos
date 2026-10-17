@@ -1,0 +1,10 @@
+{
+  "folders": [
+    { "path": ".", "name": "kiem-tra-go-tieng-viet" }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.DS_Store": true
+    }
+  }
+}
